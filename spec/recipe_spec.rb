@@ -36,11 +36,21 @@ describe Recipe do
       extra_ingredient = 'pineapple' # Sorry hawaians!
       @hawaian_pizza_ingredients = @hawaian_pizza.ingredients + [extra_ingredient]
       @hawaian_pizza.ingredient(extra_ingredient)
+      # Ingredient is idempotent
+      @vegan_pizza_ingredients = %w[apple lettuce green\ peas]
+      @vegan_pizza = Recipe.new('vegan pizza', @vegan_pizza_ingredients)
+      @vegan_pizza.ingredient 'garlic'
+      @vegan_pizza.ingredient 'garlic'
     end
     context 'the instance method "ingredient"' do
       it 'adds a new ingredient to its recipe' do
         expect(@hawaian_pizza.ingredients).to eql(@hawaian_pizza_ingredients)
       end
+
+      it 'it does not add duplicate ingredients' do
+        expect(@vegan_pizza.ingredients).to eql(@vegan_pizza_ingredients)
+      end
+
     end
   end
 end
