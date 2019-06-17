@@ -52,6 +52,11 @@ describe Recipe do
       it 'retrieves the existent recipe with such a name' do
         expect(Recipe.for(@pizza.name)).to equal(@pizza)
       end
+
+      it 'returns nil if no recipe exists with such a name' do
+        expect(Recipe.for('Snots Ice Cream')).to be_nil
+      end
+
     end
   end
 end
