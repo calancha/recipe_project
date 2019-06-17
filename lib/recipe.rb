@@ -37,4 +37,8 @@ class Recipe
     @name = name
     @ingredients = ingredients
   end
+
+  def ingredient(ingredient)
+    @ingredients.push(ingredient) unless @ingredients.include?(ingredient)
+  end
 end
