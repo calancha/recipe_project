@@ -60,9 +60,21 @@ end
 # context of the new created object.
 describe Recipe do
   describe '.describe' do
+    before(:example) do
+      @pizza_barbeque_ingredients = %w[cheese bread tomato chicken tabasco]
+      pizza_name = 'pizza barbeque'
+      recipe pizza_name do
+        ingredient 'cheese'
+        ingredient 'bread'
+        ingredient 'tomato'
+        ingredient 'chicken'
+        ingredient 'tabasco'
+      end
+      @pizza_barbeque = Recipe.for(pizza_name)
+    end
     context 'the function recipe creates a new recipe' do
       it 'and evaluates a block within the context of such a recipe' do
-        expect(recipe @pizza.name { Recipe.for(@pizza.name).name }).to eql(@pizza.name)
+        expect(@pizza_barbeque.ingredients).to eql(@pizza_barbeque_ingredients)
       end
     end
   end

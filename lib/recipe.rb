@@ -55,3 +55,9 @@ class Recipe
     yield
   end
 end
+
+def recipe(recipe_name, &block)
+  recipe = Recipe.new(recipe_name)
+  # Evaluate the block in the context of 'recipe' instance
+  recipe.instance_eval(&block)
+end
