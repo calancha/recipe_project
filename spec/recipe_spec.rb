@@ -5,6 +5,7 @@ RSpec.configure do |config|
   config.before(:example) do
     @recipe_name = 'pizza'
     @pizza_ingredients = %w[bread cheese tomato]
+    @pizza_barbeque_ingredients = @pizza_ingredients + %w[chicken tabasco]
     @pizza = Recipe.new(@recipe_name, @pizza_ingredients)
   end
 end
@@ -61,14 +62,12 @@ end
 describe Recipe do
   describe '.describe' do
     before(:example) do
-      @pizza_barbeque_ingredients = %w[cheese bread tomato chicken tabasco]
+      pizza_barbeque_ingredients = @pizza_barbeque_ingredients
       pizza_name = 'pizza barbeque'
       recipe pizza_name do
-        ingredient 'cheese'
-        ingredient 'bread'
-        ingredient 'tomato'
-        ingredient 'chicken'
-        ingredient 'tabasco'
+        pizza_barbeque_ingredients.each do |ingredient|
+          ingredient ingredient
+        end
       end
       @pizza_barbeque = Recipe.for(pizza_name)
     end
