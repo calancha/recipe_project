@@ -32,13 +32,22 @@
 ################################################################################
 class Recipe
 
+  # Class method 'for' must retrieve an existent recipe with a given name.
+  # thus, we need a way to keep track of teh created recipe instances.
+  # Let's use a class variable; a map { :instance_name => instance_object }
+  @@recipes = {}
   attr_reader :name, :ingredients
   def initialize(name, ingredients = [])
     @name = name
     @ingredients = ingredients
+    @@recipes[name.to_sym] = self
   end
 
   def ingredient(ingredient)
     @ingredients.push(ingredient) unless @ingredients.include?(ingredient)
+  end
+
+  def self.for(recipe_name)
+    @@recipes[recipe_name.to_sym]
   end
 end
