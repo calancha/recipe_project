@@ -33,8 +33,8 @@ describe Recipe do
     before(:example) do
       @hawaian_pizza = Recipe.new('hawaian pizza', @pizza_ingredients)
       extra_ingredient = 'pineapple' # Sorry hawaians!
+      @hawaian_pizza_ingredients = @hawaian_pizza.ingredients + [extra_ingredient]
       @hawaian_pizza.ingredient(extra_ingredient)
-      @hawaian_pizza_ingredients = @pizza_ingredients + [extra_ingredient]
     end
     context 'the instance method "ingredient"' do
       it 'adds a new ingredient to its recipe' do
