@@ -33,7 +33,7 @@
 class Recipe
 
   # Class method 'for' must retrieve an existent recipe with a given name.
-  # thus, we need a way to keep track of teh created recipe instances.
+  # thus, we need a way to keep track of the created recipe instances.
   # Let's use a class variable; a map { :instance_name => instance_object }
   @@recipes = {}
   attr_reader :name, :ingredients
