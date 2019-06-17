@@ -50,4 +50,8 @@ class Recipe
   def self.for(recipe_name)
     @@recipes[recipe_name.to_sym]
   end
+
+  def self.describe(&_)
+    yield
+  end
 end

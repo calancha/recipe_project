@@ -60,7 +60,7 @@ describe Recipe do
   describe '.describe' do
     context 'the class method "describe"' do
       it 'evaluates a block' do
-        expect(Recipe.describe { Recipe.for(@pizza.name) }).to eql(@pizza.name)
+        expect(Recipe.describe { Recipe.for(@pizza.name).name }).to eql(@pizza.name)
       end
     end
   end
