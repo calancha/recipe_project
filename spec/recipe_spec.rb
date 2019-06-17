@@ -43,3 +43,14 @@ describe Recipe do
     end
   end
 end
+
+# Class method 'for' returns the existent recipe of a given name
+describe Recipe do
+  describe '.for' do
+    context 'the class method "for"' do
+      it 'retrieves the existent recipe with such a name' do
+        expect(Recipe.for(@pizza.name)).to equal(@pizza)
+      end
+    end
+  end
+end
