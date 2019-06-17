@@ -55,12 +55,14 @@ describe Recipe do
   end
 end
 
-# Class method describe accepts just a block
+# recipe is a function with signature: recipe(recipe_name, &block)
+# it creates a new recipe w/ name recipe_name and executes block in the
+# context of the new created object.
 describe Recipe do
   describe '.describe' do
-    context 'the class method "describe"' do
-      it 'evaluates a block' do
-        expect(Recipe.describe { Recipe.for(@pizza.name).name }).to eql(@pizza.name)
+    context 'the function recipe creates a new recipe' do
+      it 'and evaluates a block within the context of such a recipe' do
+        expect(recipe @pizza.name { Recipe.for(@pizza.name).name }).to eql(@pizza.name)
       end
     end
   end
